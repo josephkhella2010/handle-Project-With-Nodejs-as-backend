@@ -1,0 +1,4 @@
+node_module
+.vs_code
+.env
+.DS_Store

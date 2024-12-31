@@ -1,0 +1,72 @@
+.wrapper {
+    width: 100%;
+    min-height: 100dvh;
+    background-color: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 2000px;
+}
+
+.loginFormContainer,
+.registerContainer {
+    width: 45%;
+    min-height: 300px;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    border: 1px solid black;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.loginFormSection,
+.registerFormSection {
+    width: 90%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginFormSection input,
+.registerFormSection input {
+    width: 70%;
+    height: 30px;
+    padding: 5px;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.loginFormSection button,
+.registerFormSection button {
+    width: 70%;
+    height: 30px;
+    padding: 5px;
+    border: 0px solid transparent;
+    outline: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
