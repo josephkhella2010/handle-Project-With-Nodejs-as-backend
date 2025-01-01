@@ -1,0 +1,17 @@
+.mainWrapper {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+}
+
+.Wrapper {
+    width: 100%;
+    max-width: 2000px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(24, 155, 81);
+}

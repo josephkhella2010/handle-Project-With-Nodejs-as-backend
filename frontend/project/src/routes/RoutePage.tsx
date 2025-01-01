@@ -5,6 +5,7 @@ import Login from "../pages/login/Login";
 import MainNavBar from "../pages/navigation/MainNavBar";
 import Footer from "../pages/footer/Footer";
 import Product from "../pages/product/Product";
+import ProductDetailsPage from "../pages/ProductDetailsPage/ProductDetailsPage";
 
 export default function RoutePage() {
   return (
@@ -14,6 +15,7 @@ export default function RoutePage() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/product/details/:id" element={<ProductDetailsPage />} />
       </Routes>
       <Footer />
     </Router>

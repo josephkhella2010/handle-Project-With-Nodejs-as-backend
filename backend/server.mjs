@@ -145,9 +145,13 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { Sequelize } from "sequelize";
 import { defineLoginModel } from "./models/Login.js"; // Correct ES module import
+import { defineProductModel } from "./models/Product.js"; // Correct import for Product model
 import loginRouter from "./apiRoutes/Login.js";
 import registerRouter from "./apiRoutes/register.js";
 import getUserRouter from "./apiRoutes/Users.js";
+import PostProductRouter from "./apiRoutes/Product.js";
+import getProduct from "./apiRoutes/getProduct.js";
+import getSingleProduct from "./apiRoutes/getSingleProduct.js";
 
 dotenv.config();
 
@@ -155,41 +159,45 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "./database.sqlite" // SQLite file location
+    dialect: "sqlite",
+    storage: "./database.sqlite" // SQLite file location
 });
 
 // Define the Login model using the sequelize instance
 defineLoginModel(sequelize);
+defineProductModel(sequelize);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Sync the Sequelize models to create the database table and then start the server
-(async () => {
-  try {
-    await sequelize.sync();
-    console.log("Login table created successfully.");
+(async() => {
+    try {
+        await sequelize.sync();
+        console.log("Login table created successfully.");
 
-    // Start the server once the database is ready
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Error syncing model:", error);
-    process.exit(1); // Exit process with error code if sync fails
-  }
+        // Start the server once the database is ready
+        app.listen(PORT, () => {
+            console.log(`Server running at http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error syncing model:", error);
+        process.exit(1);
+    }
 })();
 
 // Register API routes
-app.use("/api", registerRouter(sequelize)); // Pass sequelize to register router
-app.use("/api", loginRouter(sequelize)); // Pass sequelize to login router
-app.use("/api", getUserRouter(sequelize)); // Pass sequelize to get users router
+app.use("/api", registerRouter(sequelize));
+app.use("/api", loginRouter(sequelize));
+app.use("/api", getUserRouter(sequelize));
+app.use("/api", PostProductRouter(sequelize));
+app.use("/api", getProduct(sequelize));
+app.use("/api/", getSingleProduct(sequelize));
 
 // GET route to check the server status
 app.get("/", (req, res) => {
-  res.send({ message: "Welcome to the API!" });
+    res.send({ message: "Welcome to the API!" });
 });
 
 // Export sequelize for future use
