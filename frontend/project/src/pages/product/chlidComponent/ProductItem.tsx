@@ -9,6 +9,9 @@ interface productType {
   ind?: number;
   price: number;
   description: string;
+  color: string;
+  productType: string;
+  totalQuantity: number;
 }
 
 interface propsType {
@@ -17,7 +20,8 @@ interface propsType {
 }
 
 const ProductItem: React.FC<propsType> = ({ product, index }) => {
-  const { name, description, url, price } = product;
+  const { name, description, url, price, color, productType, totalQuantity } =
+    product;
 
   return (
     <Link to={`/product/details/${product.id}`} state={product}>
@@ -34,6 +38,15 @@ const ProductItem: React.FC<propsType> = ({ product, index }) => {
           </p>
           <p>
             <b>Price:</b> {price} $
+          </p>
+          <p>
+            <b>color:</b> {color}
+          </p>
+          <p>
+            <b> totalQuantity:</b> {totalQuantity}
+          </p>
+          <p>
+            <b> productType:</b> {productType}
           </p>
         </div>
       </div>

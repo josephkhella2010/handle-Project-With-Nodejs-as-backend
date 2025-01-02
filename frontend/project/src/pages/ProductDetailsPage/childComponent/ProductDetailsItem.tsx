@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../productDetails.module.css";
-interface productType {
+
+interface ProductType {
   name: string;
   url?: string;
   ind?: number;
@@ -8,23 +9,37 @@ interface productType {
   description: string;
   imgs?: string[];
 }
+
 interface ProductDetailsItemProps {
-  singleProduct: productType;
+  singleProduct: ProductType | null;
 }
+
 const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
   singleProduct
 }) => {
+  if (!singleProduct) {
+    return <div>Loading product details...</div>;
+  }
+
   return (
     <div>
-      <h1>product details</h1>
+      <h1>Product Details</h1>
       <div>
         <div>
-          <img src={singleProduct.url} alt="" />
+          {/* Render the main product image, if available */}
+          <img
+            src={singleProduct?.url || "/default-image.jpg"}
+            alt={singleProduct?.name || "Product"}
+          />
           <div>
             {singleProduct.imgs &&
-              singleProduct.imgs.map((item: string, index: number) => {
-                return <img src={item} alt="" key={index} />;
-              })}
+              singleProduct.imgs.map((item: string, index: number) => (
+                <img
+                  src={item}
+                  alt={`Additional Image ${index + 1}`}
+                  key={index}
+                />
+              ))}
           </div>
         </div>
         <div>
@@ -33,8 +48,7 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
               <b>Number</b>: {singleProduct.ind}
             </p>
             <h3>
-              <b>name</b>
-              {singleProduct.name}
+              <b>Name:</b> {singleProduct.name}
             </h3>
             <p>
               <b>Description:</b> {singleProduct.description}
@@ -48,4 +62,5 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
     </div>
   );
 };
+
 export default ProductDetailsItem;

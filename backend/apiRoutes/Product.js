@@ -5,7 +5,17 @@ const PostProductRouter = (sequelize) => {
   const router = express.Router();
 
   router.post("/add-product", async (req, res) => {
-    const { name, url, description, price, imgs } = req.body;
+    const {
+      name,
+      url,
+      description,
+      price,
+      imgs,
+      quantity,
+      totalQuantity,
+      color,
+      productType
+    } = req.body;
     try {
       const maxInd = (await Product.max("ind")) || 0; // Find the current maximum value of `ind`
       const newProduct = await Product.create({
@@ -14,7 +24,11 @@ const PostProductRouter = (sequelize) => {
         price,
         url,
         imgs,
-        ind: maxInd + 1 // Increment the maximum value
+        ind: maxInd + 1,
+        quantity,
+        totalQuantity,
+        color,
+        productType
       });
       res.status(201).json({
         products: newProduct,

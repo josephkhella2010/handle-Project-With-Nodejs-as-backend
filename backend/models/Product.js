@@ -80,6 +80,22 @@ export const defineProductModel = (sequelize) => {
       imgs: {
         type: DataTypes.JSON, // Use JSON to store an array of image URLs/paths
         allowNull: true // This can be nullable
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      totalQuantity: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      color: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      productType: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     },
     {
