@@ -152,6 +152,8 @@ import getUserRouter from "./apiRoutes/Users.js";
 import PostProductRouter from "./apiRoutes/Product.js";
 import getProduct from "./apiRoutes/getProduct.js";
 import getSingleProduct from "./apiRoutes/getSingleProduct.js";
+import addCartPost from "./apiRoutes/addCart.js";
+import PaymentPost from "./apiRoutes/Payment.js";
 
 dotenv.config();
 
@@ -194,7 +196,8 @@ app.use("/api", getUserRouter(sequelize));
 app.use("/api", PostProductRouter(sequelize));
 app.use("/api", getProduct(sequelize));
 app.use("/api/", getSingleProduct(sequelize));
-
+app.use("/api", addCartPost(sequelize));
+app.use("/api", PaymentPost(sequelize));
 // GET route to check the server status
 app.get("/", (req, res) => {
     res.send({ message: "Welcome to the API!" });

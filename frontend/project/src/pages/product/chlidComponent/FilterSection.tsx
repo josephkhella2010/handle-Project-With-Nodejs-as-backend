@@ -44,6 +44,7 @@ export default function FilterSection({
                     <input
                       type="checkbox"
                       value={item.value}
+                      checked={boxValues.includes(item.value)}
                       onChange={handleCheckBox}
                     />
                     {item.name}

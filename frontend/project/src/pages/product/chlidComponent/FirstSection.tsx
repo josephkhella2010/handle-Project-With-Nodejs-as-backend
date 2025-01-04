@@ -362,7 +362,7 @@ interface productType {
   productType: string;
 }
 
-export const radioBox: BoxesType[] = [
+/* export const radioBox: BoxesType[] = [
   { name: "All", value: "all" },
   { name: "Red", value: "red" },
   { name: "Black", value: "black" },
@@ -383,7 +383,7 @@ export const CheckBoxArr: BoxesType[] = [
 export const dropDownValue: BoxesType[] = [
   { name: "Cheapist", value: "cheapist" },
   { name: "Expensive", value: "expensive" }
-];
+]; */
 
 export default function FirstSection() {
   const [products, setProducts] = useState<productType[]>([]);
@@ -427,7 +427,7 @@ export default function FirstSection() {
     // Apply search filter
     if (searchValue) {
       filtered = filtered.filter(
-        (item) =>
+        (item: productType) =>
           item.color?.toLowerCase().includes(searchValue.toLowerCase()) ||
           item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
           item.productType.toLowerCase().includes(searchValue.toLowerCase())
@@ -437,14 +437,15 @@ export default function FirstSection() {
     // Apply radio button filter
     if (radioVal !== "all") {
       filtered = filtered.filter(
-        (item) => item.color?.toLowerCase() === radioVal.toLowerCase()
+        (item: productType) =>
+          item.color?.toLowerCase() === radioVal.toLowerCase()
       );
     }
 
     // Apply checkbox filter
     if (boxValues.length > 0) {
       if (!boxValues.includes("all")) {
-        filtered = filtered.filter((item) =>
+        filtered = filtered.filter((item: productType) =>
           boxValues.some((boxVal) =>
             item.productType.toLowerCase().includes(boxVal.toLowerCase())
           )
@@ -454,9 +455,9 @@ export default function FirstSection() {
 
     // Apply dropdown filter
     if (dropDownVal === "Cheapist") {
-      filtered.sort((a, b) => a.price - b.price);
+      filtered.sort((a: any, b: any) => a.price - b.price);
     } else if (dropDownVal === "Expensive") {
-      filtered.sort((a, b) => b.price - a.price);
+      filtered.sort((a: any, b: any) => b.price - a.price);
     }
     console.log(filtered);
     setFilteredItems(filtered);
@@ -476,6 +477,11 @@ export default function FirstSection() {
   function dividePage(page: number) {
     const firstCardInPage = (page - 1) * visiableCard;
     const lastCardInPage = firstCardInPage + visiableCard;
+    if (page === startPage + visiblePage && page < totalPages) {
+      setStartPage((prev) => prev + 1);
+    } else if (page === startPage + 1 && page > 1) {
+      setStartPage((prev) => prev - 1);
+    }
     setProducts(filteredItems.slice(firstCardInPage, lastCardInPage));
   }
 
@@ -499,27 +505,51 @@ export default function FirstSection() {
   function handleNext() {
     setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   }
-
+  /* ////////////////////// */
+  const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (value === "all") {
+      setBoxValues(checked ? ["all"] : []);
+    } else {
+      setBoxValues((prev) => {
+        if (checked) {
+          return [...prev, value];
+        } else {
+          return prev.filter((val) => val !== value);
+        }
+      });
+    }
+  };
   return (
     <div className={styles.firstSectionWrapper}>
       <FilterSection
-        handleSearch={(e) => setSearchValue(e.target.value)}
-        handleCheckBox={(e) => {
+        handleSearch={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSearchValue(e.target.value)
+        }
+        handleCheckBox={handleCheckBox}
+        /*    handleCheckBox={(e: React.ChangeEvent<HTMLInputElement>) => {
           const { value, checked } = e.target;
           setBoxValues((prev) =>
             checked ? [...prev, value] : prev.filter((val) => val !== value)
           );
-        }}
+        }} */
+
         handleDropDown={setDropDownVal}
-        handleRadio={(e) => setRadioVal(e.target.value)}
+        handleRadio={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setRadioVal(e.target.value)
+        }
         searchValue={searchValue}
         dropDownVal={dropDownVal}
         radioVal={radioVal}
         boxValues={boxValues}
       />
       <div className={styles.firstSection}>
-        {products.map((product, index) => (
-          <ProductItem product={product} key={index} />
+        {products.map((product: any, index) => (
+          <ProductItem
+            product={product}
+            key={index}
+            index={(currentPage - 1) * visiableCard + index}
+          />
         ))}
         <div>
           <PaginationSection
