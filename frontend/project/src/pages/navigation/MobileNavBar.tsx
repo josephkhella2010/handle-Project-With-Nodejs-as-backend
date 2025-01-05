@@ -9,6 +9,8 @@ import {
   setUserInfo
 } from "../../reducer/LoginSlice";
 import { isLogout } from "../../utils/LogOutFunction";
+import { FaShoppingCart } from "react-icons/fa";
+import DropDown from "./DropDown";
 
 export default function MobileNavBar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,7 +20,9 @@ export default function MobileNavBar() {
   const isLogged = useSelector((state: RootState) => state.login.isLogged);
   const localStorageUser = JSON.parse(localStorage.getItem("user") || "{}");
   const navigate = useNavigate();
-
+  const totalCartItems = useSelector(
+    (state: RootState) => state.cart.totalCartItems
+  );
   useEffect(() => {
     if (localStorageUser.username) {
       dispatch(setIsLoggedIn(true));
@@ -38,13 +42,25 @@ export default function MobileNavBar() {
           Logo
         </Link>
       </h1>
-      <div
-        className={`${styles.hamburgContainer} ${addOpenClass}`}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <div className={styles.hamburgLine}></div>
-        <div className={styles.hamburgLine}></div>
-        <div className={styles.hamburgLine}></div>
+      <div className={styles.rightSection}>
+        <div className={styles.cartSection}>
+          <FaShoppingCart
+            className={styles.cartIcon}
+            onClick={() => {
+              navigate("/cart");
+            }}
+          />
+          {totalCartItems > 0 && <> {totalCartItems}</>}
+        </div>
+        <DropDown />
+        <div
+          className={`${styles.hamburgContainer} ${addOpenClass}`}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div className={styles.hamburgLine}></div>
+          <div className={styles.hamburgLine}></div>
+          <div className={styles.hamburgLine}></div>
+        </div>
       </div>
       <ul className={`${styles.menuMobile} ${showClass}`}>
         <li onClick={() => setIsOpen(!isOpen)}>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import MobileNavBar from "./MobileNavBar";
 import DesktopNavBar from "./DesktopNavBar";
-
+import styles from "./navBar.module.css";
 export default function MainNavBar() {
   const mobileWidth: number = 768;
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -20,5 +19,11 @@ export default function MainNavBar() {
       window.removeEventListener("resize", handleResize);
     };
   }, [isMobile]);
-  return <>{isMobile ? <MobileNavBar /> : <DesktopNavBar />}</>;
+  return (
+    <div className={styles.mainWrapper}>
+      <div className={styles.wrapper}>
+        {isMobile ? <MobileNavBar /> : <DesktopNavBar />}
+      </div>
+    </div>
+  );
 }

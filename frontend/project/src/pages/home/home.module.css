@@ -1,6 +1,179 @@
-.wrapper {
+.homeMainWrapper {
     width: 100%;
-    min-height: 100dvh;
-    background-color: brown;
     z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+
+.homeWrapper {
+    width: 100%;
+    max-width: 2000px;
+    min-height: 100dvh;
+}
+
+.firstContent {
+    width: 100%;
+    min-height: 500px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.firstContent h1:nth-of-type(1) {
+    color: red;
+    font-size: 10rem;
+}
+
+.firstContent h1:nth-of-type(2) {
+    color: red;
+    font-size: 6rem;
+}
+
+.secondContent {
+    width: 100%;
+    height: 700px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.secondContent img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.306);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer {
+    display: flex;
+    height: 100%;
+    gap: 10px
+}
+
+.imgContainer img {
+    height: 100%;
+    width: 50%
+}
+
+.buyBtn {
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    height: 60px;
+    background-color: rgba(128, 128, 128, 0.74);
+    width: 200px;
+    outline: none;
+    border: 0px solid transparent;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    transition: transform 0.5s linear, background-color 0.5s linear;
+    -webkit-transition: transform 0.5s linear, background-color 0.5s linear;
+    -moz-transition: transform 0.5s linear, background-color 0.5s linear;
+    -ms-transition: transform 0.5s linear, background-color 0.5s linear;
+    -o-transition: transform 0.5s linear, background-color 0.5s linear;
+}
+
+.buyBtn:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    background-color: rgba(30, 30, 30, 0.669);
+}
+
+.secondContentText {
+    width: 100%;
+    min-height: 500px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: column;
+    padding: 300px 20px;
+}
+
+.secondContentText h1:nth-of-type(1) {
+    color: red;
+    font-size: 7rem;
+}
+
+.secondContentText h1:nth-of-type(2) {
+    color: red;
+    font-size: 5rem;
+    margin-left: 100px;
+}
+
+@media screen and (max-width: 580px) {
+    .firstContent {
+        min-height: 100px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .firstContent h1 {
+        font-size: 2rem !important;
+    }
+    .secondContentText {
+        min-height: 100px;
+    }
+    .secondContentText h1 {
+        font-size: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+    .secondContentText {
+        min-height: 100px;
+        padding: 100px 10px;
+    }
+    .secondContentText h1 {
+        font-size: 5rem !important;
+    }
+    .secondContentText h1:nth-of-type(2) {
+        font-size: 4rem !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .secondContentText {
+        min-height: 100px;
+        padding: 100px 10px;
+    }
+    .secondContentText h1 {
+        font-size: 3rem !important;
+    }
+    .secondContentText h1:nth-of-type(2) {
+        font-size: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .secondContentText {
+        min-height: 100px;
+        padding: 50px 10px;
+    }
+    .secondContentText h1 {
+        font-size: 2rem !important;
+    }
+    .secondContentText h1:nth-of-type(2) {
+        font-size: 1.5rem !important;
+        margin-left: 30px;
+    }
 }

@@ -3,12 +3,17 @@ import styles from "../login.module.css";
 import { useDispatch } from "react-redux";
 import { setIsRegister } from "../../../reducer/LoginSlice";
 import axios from "axios";
+import { IoIosEye, IoMdEyeOff } from "react-icons/io";
 
 interface userInformationType {
   username: string;
   email: string | number;
   password: string;
   repassword: string;
+}
+interface isPasswordType {
+  password: Boolean;
+  repassword: Boolean;
 }
 
 export default function RegisterForm() {
@@ -30,6 +35,10 @@ export default function RegisterForm() {
 
   const [users, setUsers] = useState<userInformationType[]>([]);
   const [newUser, setNewUsers] = useState<userInformationType | null>(null);
+  const [isPassword, setIsPassword] = useState<isPasswordType>({
+    password: false,
+    repassword: false
+  });
   //////////////////////
   async function getAllUsers() {
     const getUser = await axios.get("http://localhost:5000/api/users");
@@ -114,6 +123,12 @@ export default function RegisterForm() {
     }
     dispatch(setIsRegister(false));
   }
+  function handleShowPassword(type: keyof isPasswordType) {
+    setIsPassword((prev) => ({
+      ...prev,
+      [type]: !prev[type]
+    }));
+  }
   return (
     <form className={styles.registerContainer} onSubmit={handleForm}>
       <div className={styles.registerFormSection}>
@@ -144,31 +159,55 @@ export default function RegisterForm() {
           }
         />
         {error.email && <p className={styles.error}>{error.email}</p>}
-
-        <input
-          type="password"
-          placeholder="Password"
-          value={userInformation.password}
-          onChange={(e) =>
-            setUserInformation((prev) => ({
-              ...prev,
-              password: e.target.value
-            }))
-          }
-        />
+        <div className={styles.passwordInput}>
+          <input
+            type={isPassword.password ? "text" : "password"}
+            placeholder="Password"
+            value={userInformation.password}
+            onChange={(e) =>
+              setUserInformation((prev) => ({
+                ...prev,
+                password: e.target.value
+              }))
+            }
+          />
+          {!isPassword.password ? (
+            <IoMdEyeOff
+              className={styles.passwordIcon}
+              onClick={() => handleShowPassword("password")}
+            />
+          ) : (
+            <IoIosEye
+              className={styles.passwordIcon}
+              onClick={() => handleShowPassword("password")}
+            />
+          )}
+        </div>
         {error.password && <p className={styles.error}>{error.password}</p>}
-
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          value={userInformation.repassword}
-          onChange={(e) =>
-            setUserInformation((prev) => ({
-              ...prev,
-              repassword: e.target.value
-            }))
-          }
-        />
+        <div className={styles.passwordInput}>
+          <input
+            type={isPassword.repassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            value={userInformation.repassword}
+            onChange={(e) =>
+              setUserInformation((prev) => ({
+                ...prev,
+                repassword: e.target.value
+              }))
+            }
+          />
+          {!isPassword.repassword ? (
+            <IoMdEyeOff
+              className={styles.passwordIcon}
+              onClick={() => handleShowPassword("repassword")}
+            />
+          ) : (
+            <IoIosEye
+              className={styles.passwordIcon}
+              onClick={() => handleShowPassword("repassword")}
+            />
+          )}
+        </div>
         {error.repassword && <p className={styles.error}>{error.repassword}</p>}
 
         <button type="submit">Register</button>

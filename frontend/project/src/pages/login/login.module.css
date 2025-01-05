@@ -1,7 +1,6 @@
 .wrapper {
     width: 100%;
     min-height: 100dvh;
-    background-color: brown;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,8 +22,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: green;
-    border: 1px solid black;
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -43,12 +40,18 @@
     justify-content: center;
 }
 
+.loginFormSection h1,
+.registerFormSection h1 {
+    color: rgb(86, 84, 84);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 .loginFormSection input,
 .registerFormSection input {
-    width: 70%;
-    height: 30px;
-    padding: 5px;
-    border: 0px solid transparent;
+    width: 90%;
+    height: 50px;
+    padding: 10px;
+    border: 0.1px solid rgba(0, 0, 0, 0.242);
     outline: none;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -59,14 +62,53 @@
 
 .loginFormSection button,
 .registerFormSection button {
-    width: 70%;
-    height: 30px;
+    width: 90%;
+    height: 50px;
     padding: 5px;
     border: 0px solid transparent;
+    font-size: 1.2rem;
     outline: none;
+    cursor: pointer;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+}
+
+.registerFormSection p,
+.loginFormSection p {
+    width: 90%;
+    color: red;
+}
+
+.registerFormSection p:nth-last-child(1),
+.loginFormSection p:nth-last-child(1) {
+    width: 90%;
+    color: rgb(86, 84, 84);
+    cursor: pointer;
+}
+
+.passwordInput {
+    width: 90%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput input {
+    width: 100%;
+}
+
+.passwordIcon {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
+    .loginFormContainer,
+    .registerContainer {
+        width: 90%
+    }
 }

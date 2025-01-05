@@ -6,11 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@reduxjs/toolkit/query";
 import { setIsLoggedIn, setUserInfo } from "../../reducer/LoginSlice";
 import { isLogout } from "../../utils/LogOutFunction";
+import { FaShoppingCart } from "react-icons/fa";
 export default function DesktopNavBar() {
   const isLoggedIn = useSelector((state: RootState) => state.login.isLogged);
   const userInfo = useSelector((state: RootState) => state.login.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const totalCartItems = useSelector(
+    (state: RootState) => state.cart.totalCartItems
+  );
   useEffect(() => {
     const localStorageUser = JSON.parse(localStorage.getItem("user") || "{}");
 
@@ -31,7 +35,17 @@ export default function DesktopNavBar() {
         </Link>
       </h1>
       <ul className={styles.menuDesktop}>
+        <div className={styles.cartSection}>
+          <FaShoppingCart
+            className={styles.cartIcon}
+            onClick={() => {
+              navigate("/cart");
+            }}
+          />
+          {totalCartItems > 0 && <>{totalCartItems}</>}
+        </div>
         <DropDown />
+
         <li>
           <Link to="/" className={styles.linkDesktop}>
             Home

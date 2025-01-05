@@ -95,8 +95,10 @@ import React, { useEffect, useState } from "react";
 import styles from "../productDetails.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { setTotalCartItems } from "../../../reducer/CartSlice";
+import { useDispatch } from "react-redux";
 
-interface ProductType {
+/* interface ProductType {
   id: number;
   name: string;
   url?: string;
@@ -108,6 +110,19 @@ interface ProductType {
   totalQuantity: number;
   quantity: number;
   productType?: string;
+} */
+interface ProductType {
+  id: number;
+  name: string;
+  url?: string;
+  ind?: number;
+  price: number;
+  description: string;
+  imgs: any;
+  color?: string;
+  quantity: number;
+  productType?: string;
+  totalQuantity: number; // Ensure totalQuantity is part of the type definition
 }
 
 interface ProductDetailsItemProps {
@@ -121,6 +136,7 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
   const [remainingStock, setRemainingStock] = useState<number>(0);
   const [cartProduct, setCartProduct] = useState<ProductType[]>([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (singleProduct) {
@@ -146,8 +162,12 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
       setRemainingStock(singleProduct.totalQuantity - quantity);
     }
   }, [quantity, singleProduct]);
-  console.log(remainingStock);
+
   async function handleAddToCart() {
+    if (!singleProduct) {
+      console.error("Product is null");
+      return; // Exit the function early if singleProduct is null
+    }
     try {
       await axios.put(
         `http://localhost:5000/api/products/${singleProduct.id}`,
@@ -160,7 +180,7 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
       console.error("Error updating product stock:", error);
     }
     try {
-      const newItem = {
+      const newItem: ProductType = {
         id: singleProduct.id,
         name: singleProduct.name,
         url: singleProduct.url,
@@ -170,19 +190,27 @@ const ProductDetailsItem: React.FC<ProductDetailsItemProps> = ({
         imgs: singleProduct.img,
         color: singleProduct.color,
         quantity: quantity,
-        productType: singleProduct.productType
+        productType: singleProduct.productType,
+        totalQuantity: remainingStock
       };
       const postApi = await axios.post(
         "http://localhost:5000/api/product/addCart",
         newItem
       );
-      navigate("/cart");
+
       //console.log(postApi.data.products);
     } catch (error) {
       console.log(error);
     }
-  }
+    const getAllCartItem = await axios(
+      "http://localhost:5000/api/product/productCart"
+    );
+    // console.log(getAllCartItem.data);
+    const getAllCartItemLenght = getAllCartItem.data.length;
 
+    dispatch(setTotalCartItems(getAllCartItemLenght));
+  }
+  //console.log(cartProduct);
   if (!singleProduct) {
     return <div>Loading product details...</div>;
   }

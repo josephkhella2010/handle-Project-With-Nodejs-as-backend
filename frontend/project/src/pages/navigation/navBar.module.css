@@ -1,3 +1,17 @@
+.mainWrapper {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    background-color: orange;
+}
+
+.wrapper {
+    width: 100%;
+    height: 60px;
+    max-width: 2000px;
+}
+
 .desktopNavBar,
 .mobileNavBar {
     background-color: yellow;
@@ -7,7 +21,8 @@
     width: 100%;
     height: 60px;
     padding: 0px 20px;
-    position: sticky;
+    position: fixed;
+    z-index: 200;
     top: 0;
 }
 
@@ -224,4 +239,10 @@
 
 .dropDownFlag span {
     text-transform: capitalize;
+}
+
+.rightSection {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }

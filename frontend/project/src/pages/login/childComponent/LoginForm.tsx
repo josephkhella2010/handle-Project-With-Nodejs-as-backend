@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IoIosEye, IoMdEyeOff } from "react-icons/io";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function LoginForm() {
     username: "",
     password: ""
   });
+  const [isPassword, setIsPassword] = useState<boolean>(false);
 
   // Function to fetch users
   async function getUsers() {
@@ -93,13 +95,25 @@ export default function LoginForm() {
           onChange={(e) => setUserName(e.target.value)}
         />
         {error.username && <p className={styles.error}>{error.username}</p>}
-
-        <input
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className={styles.passwordInput}>
+          <input
+            type={isPassword ? "text" : "password"}
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {!isPassword ? (
+            <IoMdEyeOff
+              className={styles.passwordIcon}
+              onClick={() => setIsPassword(!isPassword)}
+            />
+          ) : (
+            <IoIosEye
+              className={styles.passwordIcon}
+              onClick={() => setIsPassword(!isPassword)}
+            />
+          )}
+        </div>
         {error.password && <p className={styles.error}>{error.password}</p>}
 
         <button type="submit">Log in</button>

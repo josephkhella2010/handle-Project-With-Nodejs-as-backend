@@ -5,6 +5,7 @@ import { HomeArr } from "./HomeArr";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store"; // Adjust to your Redux store path
 import { setIsLoggedIn, setUserInfo } from "../../reducer/LoginSlice";
+import FirstSection from "./childComponent/FirstSection";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -22,23 +23,28 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.homeMainWrapper}>
+      <div className={styles.homeWrapper}>
+        <FirstSection />
+      </div>
+    </div>
+    /*   <div className={styles.wrapper}>
       {isLoggedIn && <h1>Hello, {userInfo.username}</h1>}
       <h1>{GetText("home/title")}</h1>{" "}
       <div>
         {HomeArr.map((item, index) => (
           <div key={index}>
             <h2>{GetText(item.category)}</h2>{" "}
-            {/* Translate the category using the key */}
+           
             {item.questions.map((question, qIndex) => (
               <div key={qIndex}>
-                <h3>{GetText(question.title)}</h3> {/* Translate the title */}
-                <p>{GetText(question.content)}</p> {/* Translate the content */}
+                <h3>{GetText(question.title)}</h3> 
+                <p>{GetText(question.content)}</p> 
               </div>
             ))}
           </div>
         ))}
       </div>
-    </div>
+    </div> */
   );
 }
