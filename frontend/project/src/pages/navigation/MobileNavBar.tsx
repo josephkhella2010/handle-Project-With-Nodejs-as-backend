@@ -50,7 +50,7 @@ export default function MobileNavBar() {
               navigate("/cart");
             }}
           />
-          {totalCartItems > 0 && <> {totalCartItems}</>}
+          {totalCartItems > 0 && <span> {totalCartItems}</span>}
         </div>
         <DropDown />
         <div

@@ -1,16 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import styles from "./footer.module.css";
 
 export default function Footer() {
-  const totalPrice = useSelector((state: any) => state.cart.totalPrice);
   return (
-    <div>
-      <h1>footer</h1>
-      <h1>footer</h1>
-      <h1>footer</h1>
-      <h1>footer</h1>
-      <h1>footer</h1>
-      <h1>{totalPrice}</h1>
+    <div className={styles.footerMainWrapper}>
+      <div className={styles.footerWrapper}>
+        <h1>footer</h1>
+        <h1>footer</h1>
+        <h1>footer</h1>
+        <h1>footer</h1>
+        <h1>footer</h1>
+      </div>
     </div>
   );
 }

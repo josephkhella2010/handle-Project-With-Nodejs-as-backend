@@ -1,0 +1,13 @@
+.footerMainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footerWrapper {
+    width: 100%;
+    max-width: 2000px;
+    background-color: rgb(255, 93, 6);
+    padding: 50px 20px;
+    border-top: 2px solid rgb(243, 101, 25);
+}

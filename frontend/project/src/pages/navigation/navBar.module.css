@@ -3,22 +3,25 @@
     height: 60px;
     display: flex;
     justify-content: center;
-    background-color: orange;
+    background-color: rgb(255, 93, 6);
 }
 
 .wrapper {
     width: 100%;
     height: 60px;
     max-width: 2000px;
+    display: flex;
+    justify-content: center;
 }
 
 .desktopNavBar,
 .mobileNavBar {
-    background-color: yellow;
+    background-color: rgba(222, 80, 3, 0.833);
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 2000px;
     height: 60px;
     padding: 0px 20px;
     position: fixed;
@@ -26,16 +29,20 @@
     top: 0;
 }
 
+.mobileNavBar {
+    background-color: rgb(240, 96, 19);
+}
+
 .LogoDesktopNav,
 .LogoMobileNav {
     font-size: 2rem;
     text-decoration: none;
-    color: black;
+    color: rgb(7, 54, 77);
 }
 
 .menuDesktop {
     width: 60%;
-    background-color: blueviolet;
+    color: rgb(7, 54, 77);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +52,6 @@
 
 .menuDesktop li {
     list-style: none;
-    background-color: darkgreen;
     width: 20%;
     height: 100%;
     cursor: pointer;
@@ -53,7 +59,7 @@
 
 .linkDesktop {
     text-decoration: none;
-    color: black;
+    color: rgb(7, 54, 77);
     height: 100%;
     width: 100%;
     display: flex;
@@ -81,7 +87,7 @@
 .hamburgLine {
     width: 80%;
     height: 3px;
-    background-color: black;
+    background-color: rgb(7, 54, 77);
     border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -100,7 +106,7 @@
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: cyan;
+    background-color: rgba(189, 75, 4, 0.995);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +130,7 @@
 .menuMobile li {
     width: 100%;
     height: 100px;
-    background-color: red;
+    background-color: rgba(228, 110, 25, 0.527);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +138,8 @@
 
 .linkMobile {
     text-decoration: none;
-    color: black;
+    color: rgb(7, 54, 77);
+    ;
     height: 100%;
     width: 100%;
     display: flex;
@@ -148,7 +155,7 @@
 }
 
 .linkMobile:hover {
-    background-color: aliceblue;
+    background-color: rgb(243, 128, 57);
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -180,21 +187,25 @@
 /* drop down */
 
 .dropDownContainer {
-    background-color: rgb(11, 48, 149);
+    /*     background-color: rgb(11, 48, 149);
+ */
     position: relative;
     cursor: pointer;
 }
 
 .topSectionDropDown {
-    width: 100px;
+    width: 70px;
     height: 50px;
-    background-color: aliceblue;
+    /*     background-color: aliceblue;
+ */
     position: relative;
 }
 
 .topSectionDropDown img {
-    width: 100%;
-    height: 100%;
+    /*  width: 100%;
+    height: 100%; */
+    width: 70px;
+    height: 50px;
 }
 
 .BottomSectionDropDown {
@@ -204,7 +215,7 @@
     width: 135px;
     min-height: 100px;
     border-radius: 10px;
-    background-color: rgb(98, 98, 98);
+    background-color: rgba(240, 127, 46, 0.906);
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -220,11 +231,12 @@
 
 .dropDownFlag {
     width: 100%;
-    height: 70px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    color: rgb(7, 54, 77);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -233,8 +245,8 @@
 }
 
 .dropDownFlag img {
-    width: 70%;
-    height: 100%;
+    width: 70px;
+    height: 50px;
 }
 
 .dropDownFlag span {
@@ -245,4 +257,22 @@
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+.cartIcon {
+    color: rgb(7, 54, 77);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cartSection {
+    position: relative;
+    margin-right: 10px;
+}
+
+.cartSection span {
+    position: absolute;
+    top: -10px;
+    color: rgb(7, 54, 77);
+    font-size: 20px;
 }

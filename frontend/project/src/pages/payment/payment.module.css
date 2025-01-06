@@ -1,0 +1,69 @@
+.paymentMainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: 100dvh;
+    color: gray
+}
+
+.paymentWrapper {
+    width: 100%;
+    max-width: 2000px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 100px 10px;
+}
+
+.formConatiner {
+    display: flex;
+    flex-direction: column;
+    /*     background-color: blue;
+ */
+    width: 50%;
+    gap: 15px;
+}
+
+.formConatiner label {
+    /*     background-color: blueviolet;
+ */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formConatiner label input {
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    border: 0.5px solid rgba(70, 70, 70, 0.34);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.btn {
+    height: 60px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 0px solid transparent;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    color: rgb(7, 54, 77);
+}
+
+@media screen and (max-width: 810px) {
+    .formConatiner {
+        width: 80%;
+    }
+    .formConatiner label b {
+        font-size: 10px;
+    }
+}

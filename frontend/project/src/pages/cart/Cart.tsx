@@ -114,6 +114,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setTotalCartItems, setTotalPrice } from "../../reducer/CartSlice";
 import { useNavigate } from "react-router-dom";
+import styles from "./cart.module.css";
 
 export default function Cart() {
   interface productCartType {
@@ -184,53 +185,65 @@ export default function Cart() {
   }
 
   return (
-    <div>
-      <h1>Cart</h1>
-      <div>
-        {productCart.length > 0 ? (
-          productCart.map((item, index: number) => {
-            const {
-              color,
-              description,
-              name,
-              price,
-              productId,
-              productType,
-              quantity,
-              url
-            } = item;
-            return (
-              <div key={index}>
-                <img src={url} alt={name} />
-                <p>
-                  <b>Description:</b> {description}
-                </p>
-                <p>
-                  <b>Color:</b> {color}
-                </p>
-                <p>
-                  <b>Price:</b> {price} $
-                </p>
-                <p>
-                  <b>Product Type:</b> {productType}
-                </p>
-                <p>
-                  <b>Quantity:</b> {quantity}
-                </p>
-                <p>
-                  <b>Name:</b> {name}
-                </p>
-                <button onClick={() => handleDelete(productId)}>Delete</button>
-              </div>
-            );
-          })
-        ) : (
-          <p>Your cart is empty.</p>
-        )}
-        <p>
-          <b>Total Price:</b> {TotalPrice} $
-        </p>
-        <button onClick={() => navigate("/payment")}>Go to Payment</button>
+    <div className={styles.cartMainWrapper}>
+      <div className={styles.cartWrapper}>
+        <div className={styles.cartContainer}>
+          <h1>Dina viljande Grejer</h1>
+          <div className={styles.cartSection}>
+            {productCart.length > 0 ? (
+              productCart.map((item, index: number) => {
+                const {
+                  color,
+                  description,
+                  name,
+                  price,
+                  productId,
+                  productType,
+                  quantity,
+                  url
+                } = item;
+                return (
+                  <div key={index} className={styles.cartContent}>
+                    <img src={url} alt={name} />
+                    <div key={index} className={styles.cartContentText}>
+                      <p>
+                        <b>Description:</b> {description}
+                      </p>
+                      <p>
+                        <b>Color:</b> {color}
+                      </p>
+                      <p>
+                        <b>Price:</b> {price} $
+                      </p>
+                      <p>
+                        <b>Product Type:</b> {productType}
+                      </p>
+                      <p>
+                        <b>Quantity:</b> {quantity}
+                      </p>
+                      <p>
+                        <b>Name:</b> {name}
+                      </p>
+                      <div className={styles.btnContainer}>
+                        <button onClick={() => handleDelete(productId)}>
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p> Du har ingen grejer i din korg</p>
+            )}
+          </div>
+          <p className={styles.totalPrice}>
+            <b>Total Price:</b> {TotalPrice} $
+          </p>
+          <div className={styles.btnContainerPayment}>
+            <button onClick={() => navigate("/payment")}>Go to Payment</button>
+          </div>
+        </div>
       </div>
     </div>
   );
