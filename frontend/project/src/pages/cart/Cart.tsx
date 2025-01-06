@@ -126,6 +126,7 @@ export default function Cart() {
     productType: string;
     quantity: number;
     url: string;
+    ind: number;
   }
 
   const [productCart, setProductCart] = useState<productCartType[]>([]);
@@ -171,7 +172,7 @@ export default function Cart() {
 
       if (response.status === 200) {
         // If the product is successfully deleted from the back-end, update the front-end state
-        const updatedCart = productCart.filter((item) => item.productId !== id);
+        const updatedCart = productCart.filter((item) => item.ind !== id);
         setProductCart(updatedCart); // Update the state to remove the deleted item
         dispatch(setTotalCartItems(updatedCart.length));
 
@@ -200,12 +201,16 @@ export default function Cart() {
                   productId,
                   productType,
                   quantity,
-                  url
+                  url,
+                  ind
                 } = item;
                 return (
                   <div key={index} className={styles.cartContent}>
                     <img src={url} alt={name} />
                     <div key={index} className={styles.cartContentText}>
+                      <p>
+                        <b>Name:</b> {name}
+                      </p>
                       <p>
                         <b>Description:</b> {description}
                       </p>
@@ -221,11 +226,12 @@ export default function Cart() {
                       <p>
                         <b>Quantity:</b> {quantity}
                       </p>
+
                       <p>
-                        <b>Name:</b> {name}
+                        <b>Price for products:</b> {price * quantity}
                       </p>
                       <div className={styles.btnContainer}>
-                        <button onClick={() => handleDelete(productId)}>
+                        <button onClick={() => handleDelete(ind)}>
                           Delete
                         </button>
                       </div>

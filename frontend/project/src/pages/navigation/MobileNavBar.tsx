@@ -34,6 +34,10 @@ export default function MobileNavBar() {
     setIsOpen(!isOpen);
     navigate("/");
   }
+  function handleCart() {
+    navigate("/cart");
+    setIsOpen(false);
+  }
 
   return (
     <nav className={styles.mobileNavBar}>
@@ -44,12 +48,7 @@ export default function MobileNavBar() {
       </h1>
       <div className={styles.rightSection}>
         <div className={styles.cartSection}>
-          <FaShoppingCart
-            className={styles.cartIcon}
-            onClick={() => {
-              navigate("/cart");
-            }}
-          />
+          <FaShoppingCart className={styles.cartIcon} onClick={handleCart} />
           {totalCartItems > 0 && <span> {totalCartItems}</span>}
         </div>
         <DropDown />
