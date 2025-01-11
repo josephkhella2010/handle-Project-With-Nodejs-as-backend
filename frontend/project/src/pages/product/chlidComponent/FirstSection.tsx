@@ -393,12 +393,12 @@ export default function FirstSection() {
   const [visiblePage, setVisiblePage] = useState<number>(
     window.innerWidth <= 600 ? 3 : 4
   );
-  const visiableCard: number = 3;
+  const visiableCard: number = 9;
 
   const totalPages = Math.ceil(filteredItems.length / visiableCard);
 
   const [searchValue, setSearchValue] = useState<string>("");
-  const [dropDownVal, setDropDownVal] = useState<string>("all");
+  const [dropDownVal, setDropDownVal] = useState<string>("Filter by price");
   const [radioVal, setRadioVal] = useState<string>("all");
   const [boxValues, setBoxValues] = useState<string[]>([]);
 
@@ -551,14 +551,16 @@ export default function FirstSection() {
             index={(currentPage - 1) * visiableCard + index}
           />
         ))}
-        <div>
-          <PaginationSection
-            pagination={pagination}
-            handleClick={handleClick}
-            handlePrevious={handlePrevious}
-            handleNext={handleNext}
-          />
-        </div>
+      </div>
+      <div className={styles.paginationContainer}>
+        <PaginationSection
+          pagination={pagination}
+          handleClick={handleClick}
+          handlePrevious={handlePrevious}
+          handleNext={handleNext}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </div>
   );

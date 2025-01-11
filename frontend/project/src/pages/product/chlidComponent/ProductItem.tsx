@@ -24,7 +24,10 @@ const ProductItem: React.FC<propsType> = ({ product, index }) => {
     product;
 
   return (
-    <Link to={`/product/details/${product.id}`} state={product}>
+    <Link
+      to={`/product/details/${product.id}`}
+      state={product}
+      className={styles.cartLinkContainer}>
       <div className={styles.cardSection}>
         <img src={url || "/default-image.jpg"} alt={name} />
 

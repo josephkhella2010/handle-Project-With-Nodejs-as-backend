@@ -6,7 +6,6 @@ export default function Product() {
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.Wrapper}>
-        <h1>products</h1>
         <FirstSection />
       </div>
     </div>
