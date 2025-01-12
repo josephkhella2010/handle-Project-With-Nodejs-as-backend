@@ -35,12 +35,11 @@ const ProductDetailsPage: React.FC = () => {
     };
 
     fetchProduct();
-  }, [id]); // Fetch the product whenever the `id` changes
+  }, [id]);
 
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.Wrapper}>
-        <h1>details</h1>
         <ProductDetailsItem singleProduct={singleProduct} />
       </div>
     </div>
