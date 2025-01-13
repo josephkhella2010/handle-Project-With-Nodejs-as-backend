@@ -3,7 +3,6 @@
     min-height: 100%;
     display: flex;
     justify-content: center;
-    background-color: yellow;
    
 }
 
@@ -14,10 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(24, 155, 81);
 }
 .productContainer{
-    background-color: red;
     padding: 70px 0px;
     width:90%;
     display:flex;
@@ -27,7 +24,6 @@
 /* slider */
 .imgContainer{
     width:60%;
-    background-color: yellow;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -45,7 +41,6 @@
     position: relative;
     }
 .sliderContainer{
-background-color: darkmagenta;
 width:100%;
 overflow: hidden;
 
@@ -54,7 +49,6 @@ overflow: hidden;
    display:flex;
     width:100%;
     gap:10px;
-    background-color: aqua;
     transition: transform 0.3s ease-in-out;
 }   
 /* .sliderContainer img{
@@ -93,11 +87,9 @@ overflow: hidden;
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: aqua;
     gap:15px;
     width:40%;
-    padding: 10px;
+    padding: 30px 10px; 
 }
 .textSection{
     width:100%;

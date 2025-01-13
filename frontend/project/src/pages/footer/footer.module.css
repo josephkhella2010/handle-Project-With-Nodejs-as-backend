@@ -10,4 +10,77 @@
     background-color: rgb(255, 93, 6);
     padding: 50px 20px;
     border-top: 2px solid rgb(243, 101, 25);
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+}
+.footerWrapper h1{
+    color:#413f03;
+    font-size: 36px;
+}
+.bottomSection{
+/*     background-color: rgb(164, 164, 255);
+ */    display: flex;
+    justify-content: space-between;
+    width:80%;
+   
+}
+.linksSection,.socialSection{
+/*     background-color: yellow;
+ */    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.socialSection{
+    width:50%;
+    align-items: flex-start;
+/*     background-color: brown;
+ */}
+ .linksSection h4,.socialSection h4{
+    color:rgb(125, 50, 3);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 28px;
+}
+.linksList{
+     display: flex;
+    flex-direction: column;
+    gap:15px
+}
+.linksList a{
+    text-decoration: none;
+    color:#773b02;
+    cursor: pointer;
+    font-weight:500;
+    font-family: cursive;
+    font-size: 24px;
+}
+.socialIcons{
+    display: flex;
+gap:10px
+}
+.icons{
+    color:#773b02;
+    font-weight: 24px;
+    cursor: pointer;
+}
+@media screen and (max-width: 720px) {
+    .bottomSection{
+        flex-direction: column;
+        gap:40px;
+    }
+    .socialSection{
+        width:100%
+    }
+}
+@media screen and (max-width: 450px) {
+    .footerWrapper h1{
+        font-size: 28px;
+    }
+    .linksSection h4,.socialSection h4{
+        font-size: 24px;
+    }
+    .linksList a{
+    
+        font-size: 20px;
+    }
 }
